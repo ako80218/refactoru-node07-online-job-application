@@ -34,6 +34,7 @@ app.get('/', function(req, res){
 // displays a list of applicants
 app.get('/applicants', function(req, res){
 	res.render('applicants')
+           
 });
 
 // creates and applicant
