@@ -25,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //connect to the database
 mongoose.connect('mongodb://localhost/omega03');
 
+
 //renders the index page
 app.get('/', function(req, res){
 	res.render('index')
@@ -36,12 +37,7 @@ app.get('/applicants', function(req, res){
 });
 
 // creates and applicant
-app.post('/applicant', function(req, res){
-	// Here is where you need to get the data
-	// from the post body and store it
-            console.log('req.body: ', req.body);
-            res.redirect('/thank-you');
-}); 
+app.post('/applicant', applicantController.index); 
 app.get('/thank-you', function(req,res){
     res.send('Success!')
 });
