@@ -1,7 +1,24 @@
 extends layout
 
-block content
-	.container
-		h1 Applicants
-		ul#applications.list-unstyled
-		p Applicants should go here.
+block contents
+  .container
+    .row
+      ul#applications.list-unstyled.col-sm-4.col-md-offset-4
+        li: h1 Applicants
+        for doc in docs
+          li
+            h3 
+              a(href='/#{doc._id}') #{doc.name} 
+            p #{doc.bio}
+            div Skills: 
+              ul
+                for skill in doc.skills
+                  li #{skill}
+            div  Years of Experience: #{doc.years}yrs. 
+            div Why do you want to work here?
+            div #{doc.why}
+            a(href='/applicant/remove/#{doc._id}' class='btn btn-default') Remove Applicant
+
+
+
+            

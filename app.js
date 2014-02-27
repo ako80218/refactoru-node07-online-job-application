@@ -32,16 +32,17 @@ app.get('/', function(req, res){
 });
 
 // displays a list of applicants
-app.get('/applicants', function(req, res){
-	res.render('applicants')
-           
-});
+app.get('/applicants', applicantController.list);
 
 // creates and applicant
 app.post('/applicant', applicantController.index); 
-app.get('/thank-you', function(req,res){
-    res.send('Success!')
-});
+
+//REMOVE BUTTON Route
+app.get('/applicant/remove/:id', applicantController.remove);
+// app.get('/thank-you', function(req, res){
+//     res.send('Success!')
+// });
+app.get('/:userid', applicantController.detail);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
