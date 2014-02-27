@@ -17,14 +17,18 @@ module.exports =  {
             list: function(req, res){
                 ApplicantModel.find({}, function(err, docs){
                     console.log("docs: ", docs);
-                    res.render('applicants.jade', {docs: docs});
+                    res.render('applicants.jade', {
+                        docs: docs
+                    });
+                    // res.send(docs);
                 });
                 
             },
             detail: function(req, res){
                 var applicantId = req.params.userid;
-                res.send(applicantId);
-                ApplicantModel.find({_id: applicantId}, function(err, doc){
+                // res.send(applicantId);
+                ApplicantModel.findById(applicantId, function(err, doc){
+                    // console.log('_id: applicantId doc:', doc);
                     res.render('applicant.jade', {
                         name: doc.name,
                         bio: doc.bio,
